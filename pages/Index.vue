@@ -78,6 +78,8 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  mounted() {
+  }
 }
 </script>

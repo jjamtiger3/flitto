@@ -2,7 +2,7 @@ export const RouteLink = [
   {
     id: 1,
     title: 'Home',
-    to: '/'
+    to: '/index'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ export const RouteItems = [
   {
     icon: 'mdi-apps',
     title: 'Home',
-    to: '/'
+    to: '/index'
   },
   {
     icon: 'mdi-chart-bubble',
