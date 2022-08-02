@@ -12,7 +12,7 @@ export const RouteLink = [
   {
     id: 3,
     title: 'Contact US',
-    to: 'contact'
+    to: '/contact'
   }
 ];
 
