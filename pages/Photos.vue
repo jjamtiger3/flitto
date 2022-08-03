@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <template v-for="photo in photos">
           <v-col class="text-center d-flex child-flex" cols="3" :key="photo.id">
-            <nuxt-link :to="`/photos/${photo.id}`">
+            <nuxt-link :to="`/photo/${photo.id}`">
               <v-img :src="`${photo.download_url}`" aspect-ratio="1"></v-img>
             </nuxt-link>
           </v-col>
