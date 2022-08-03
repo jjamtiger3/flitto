@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce';
 
 export default {
   name: 'Photos',
@@ -22,7 +23,8 @@ export default {
     return {
       tab: null,
       photos: [],
-      photoIndex: 0
+      photoIndex: 0,
+      scrollDisabled: false
     }
   },
   created() {
@@ -34,12 +36,26 @@ export default {
     this.getPhotoData();
   },
   mounted() {
+    window.addEventListener('scroll', debounce(this.handleScroll,100));
   },
   methods: {
+    handleScroll(event) {
+      const height = document.body.clientHeight;
+      const scrollBottom = document.body.scrollHeight;
+      if (height === scrollBottom && !this.scrollDisabled) {
+        this.getPhotoData();
+      }
+    },
     getPhotoData() {
-      this.$axios.$get(`/api/photos/${this.photoIndex}`).then((res) => {
-        this.photos = res.data;
-      });
+      if (!this.scrollDisabled) {
+        this.$axios.$get(`/api/photos/${this.photoIndex}`).then((res) => {
+          if (res.data.length < 10) {
+            this.scrollDisabled = true;
+          }
+          this.photos = this.photos.concat(res.data);
+          this.photoIndex += 1;
+        });
+      }
     }
   }
 }
